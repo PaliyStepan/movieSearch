@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Provider} from 'react-redux';
+import {BrowserRouter , Route} from "react-router-dom";
+import './App.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Landing from "./components/home/Landing";
+import store from "./redux/store";
+import Movie from "./components/home/Movie";
+
+class App extends React.Component {
+  render() {
+    return (
+        <Provider store={store} >
+            <BrowserRouter>
+                <div className="App">
+                    <div className="container">
+                      <Route exact path="/" component={Landing} />
+                      <Route exact path="/movie/:id" component={Movie} />
+                    </div>
+                </div>
+            </BrowserRouter>
+        </Provider>
+    );
+  }
 }
+
+
+
 
 export default App;
