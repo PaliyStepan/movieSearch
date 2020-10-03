@@ -1,21 +1,23 @@
-import React from "react";
-import {connect} from "react-redux";
+
+
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 
 import {fetchMovie, setLoading} from "../../redux/actions/searchActions";
 import Loader from "../Loader";
 import {Link} from "react-router-dom";
 import imgPlaceholder from "../../assets/img/imgPlaceholder.png";
 
-class Movie extends React.Component {
+const Movie = (props) =>{
+    const dispatch = useDispatch();
+    const loading = useSelector(({movies}) =>  movies.loading);
+    const movie = useSelector(({movies}) =>  movies.movie);
 
-    componentDidMount() {
-        this.props.fetchMovie(this.props.match.params.id);
-        this.props.setLoading();
-    }
+    useEffect(()=>{
+        dispatch(fetchMovie(props.match.params.id));
+        dispatch(setLoading());
+    },[]);
 
-    render() {
-        const {loading, movie} = this.props;
-        console.log(this.props)
         return (
             <div className="row">
                 <div className="col-12 mb-5">
@@ -99,12 +101,7 @@ class Movie extends React.Component {
                                                 target="_blank"
                                             >Look at imdb</a>
                                         </div>
-
-
-
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -112,12 +109,17 @@ class Movie extends React.Component {
                 }
             </div>
         );
-    }
-}
+};
 
-const mapStateToProps = state => ({
-    loading: state.movies.loading,
-    movie: state.movies.movie
-});
+export default Movie;
 
-export default connect(mapStateToProps,{fetchMovie, setLoading})(Movie);
+
+
+
+
+
+
+
+
+
+

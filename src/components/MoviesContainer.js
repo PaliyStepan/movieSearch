@@ -1,36 +1,29 @@
 import React from "react";
-import {connect} from "react-redux";
+import {useSelector} from "react-redux";
 import MovieCard from "./MovieCard";
 
-export class MoviesContainer extends React.Component {
-    render() {
-        const {movies} = this.props;
+const MoviesContainer = () =>{
+        const movies = useSelector(({movies}) =>  movies.movies);
         return(
-            <div>
-                <div className="row">
-                    {
-                        movies.Response && movies.Response === "True"
-                        ? movies.Search.map((movie, index)=> <MovieCard key={index} movie={movie}/>)
-                        : null
-                    }
+            <div className="row">
+                {
+                    movies.Response && movies.Response === "True"
+                    ? movies.Search.map((movie, index)=> <MovieCard key={index} movie={movie}/>)
+                    : null
+                }
 
-                    {
-                        movies.Response && movies.Response === "False"
-                        ?  <div className="col-12">
-                                <h2>
-                                    OOPS! <br/>
-                                    something going wrong
-                                </h2>
-                            </div>
-                        : null
-                    }
-                </div>
+                {
+                    movies.Response && movies.Response === "False"
+                    ?  <div className="col-12">
+                            <h2>
+                                OOPS! <br/>
+                                something going wrong
+                            </h2>
+                        </div>
+                    : null
+                }
             </div>
         )
-    }
-}
+};
 
-const mapStateToProps = state =>({
-  movies: state.movies.movies
-});
-export default connect(mapStateToProps)(MoviesContainer);
+export default MoviesContainer;
