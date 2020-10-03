@@ -8,6 +8,7 @@ const SearchForm = () => {
     const dispatch = useDispatch();
     const text = useSelector(({movies}) =>  movies.text);
 
+
     const handleChange = e =>{
         dispatch(searchMovie(e.target.value))
     };
@@ -25,7 +26,7 @@ const SearchForm = () => {
                         <div className="col-12 col-md-9 mb-3 mb-md-0">
                             <input
                                 type="text"
-                                placeholder="search film"
+                                placeholder="search film Title. Example - Batman"
                                 className="form-control"
                                 onChange={handleChange}
                                 value={text}

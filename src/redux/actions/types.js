@@ -1,4 +1,6 @@
 export const SEARCH_MOVIE = 'SEARCH_MOVIE';
 export const FETCH_MOVIES = 'FETCH_MOVIES';
+export const FETCH_MOVIES_WITH_PAGE = 'FETCH_MOVIES_WITH_PAGE';
 export const FETCH_MOVIE = 'FETCH_MOVIE';
+export const CHANGE_ACTIVE_PAGE = 'CHANGE_ACTIVE_PAGE';
 export const LOADING = 'LOADING';

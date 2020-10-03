@@ -16,7 +16,7 @@ const Movie = (props) =>{
     useEffect(()=>{
         dispatch(fetchMovie(props.match.params.id));
         dispatch(setLoading());
-    },[]);
+    },[props.match.params.id, dispatch]);
 
         return (
             <div className="row">
